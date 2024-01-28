@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/products")
@@ -42,22 +43,22 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getProductsById(@PathVariable(value = "id") UUID id) {
-        Optional<ProductModel> productFind = productRepository.findById(id);
+        Optional<ProductModel> productModel = productRepository.findById(id);
 
-        if (productFind.isEmpty()) {
+        if (productModel.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("Product not found");
         }
         
         return ResponseEntity.status(HttpStatus.OK)
-            .body(productFind.get());
+            .body(productModel.get());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteProductsById(@PathVariable(value = "id") UUID id) {
-        Optional<ProductModel> productFind = productRepository.findById(id);
+        Optional<ProductModel> productModel = productRepository.findById(id);
 
-        if (productFind.isEmpty()) {
+        if (productModel.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("Product not found");
         }
@@ -65,6 +66,22 @@ public class ProductController {
         productRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK)
             .body(getAllProducts());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateProductById(@PathVariable(value = "id") UUID id, @RequestBody @Valid ProductRecordDto productRecordDto) {
+        Optional<ProductModel> productFind = productRepository.findById(id);
+
+        if (productFind.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Product not found");
+        }
+
+        var productModel = productFind.get();
+        
+        BeanUtils.copyProperties(productRecordDto, productModel);
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(productRepository.save(productModel));
     }
     
 }
