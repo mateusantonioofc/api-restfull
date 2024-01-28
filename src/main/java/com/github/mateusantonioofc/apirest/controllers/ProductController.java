@@ -15,7 +15,6 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -23,7 +22,7 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<ProductModel> saveProducts(@RequestBody @Valid ProductRecordDto productRecordDto) {
         ProductModel productModel = new ProductModel();
         BeanUtils.copyProperties(productRecordDto, productModel);
@@ -32,12 +31,10 @@ public class ProductController {
         
     }
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<ProductModel>> getAllProducts() {
         return ResponseEntity.status(HttpStatus.OK)
             .body(productRepository.findAll());
     }
-
-    
     
 }
