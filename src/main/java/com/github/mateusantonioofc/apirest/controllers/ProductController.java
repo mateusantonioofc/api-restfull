@@ -15,29 +15,29 @@ import com.github.mateusantonioofc.apirest.models.ProductModel;
 import com.github.mateusantonioofc.apirest.repositories.ProductRepository;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMapping;
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/v1/products")
 public class ProductController {
     
     @Autowired
     ProductRepository productRepository;
 
     @PostMapping
-    public ResponseEntity<ProductModel> saveProducts(@RequestBody @Valid ProductRecordDto productRecordDto) {
+    public ResponseEntity<Object> saveProducts(@RequestBody @Valid ProductRecordDto productRecordDto) {
         ProductModel productModel = new ProductModel();
         BeanUtils.copyProperties(productRecordDto, productModel);
+        productRepository.save(productModel);
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body(productRepository.save(productModel));
+            .body(getAllProducts());
     }
 
     @GetMapping
-    public ResponseEntity<List<ProductModel>> getAllProducts() {
-        return ResponseEntity.status(HttpStatus.OK)
+    public ResponseEntity<Object> getAllProducts() {
+    	return ResponseEntity.status(HttpStatus.OK)
             .body(productRepository.findAll());
     }
 
@@ -62,10 +62,10 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("Product not found");
         }
-    
         productRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK)
             .body(getAllProducts());
+        
     }
 
     @PutMapping("/{id}")
