@@ -15,6 +15,21 @@
 - Validation
 - PostgreSQL
 
+## How to run
+
+# Require
+- git
+- java
+
+- In your cmd, type:
+```git clone https://github.com/mateusantonioofc/api-restfull.git```
+- Enter a path
+```cd api-restfull```
+- Enter a path `bin`
+```cd bin```
+- Execute the jar file
+```java -jar apirest-1.0.0.jar```
+
 ## Routes
 
 - *GET* return all products
