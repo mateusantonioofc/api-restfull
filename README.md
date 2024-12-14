@@ -9,7 +9,7 @@
 
 # Java version
 
-- 17 LTS
+- 17
 
 # Database
 
@@ -29,13 +29,21 @@
 - java
 
 - In your cmd, type:
-```git clone https://github.com/mateusantonioofc/api-restfull.git```
+```shell
+ git clone https://github.com/mateusantonioofc/api-restfull.git
+```
 - Enter a path
-```cd api-restfull```
+```shell
+cd api-restfull
+```
 - Enter a path `bin`
-```cd bin```
+```shell
+cd bin
+```
 - Execute the jar file
-```java -jar apirest-1.0.0.jar```
+```shell
+java -jar apirest-1.0.0.jar
+```
 
 ## Routes
 
