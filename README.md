@@ -1,3 +1,10 @@
+<p align="center">
+    <a href="https://github.com/mateusantonioofc/api-restfull/pulse"><img src="https://img.shields.io/github/last-commit/mateusantonioofc/api-restfull?style=for-the-badge&logo=github&color=7dc4e4&logoColor=D9E0EE&labelColor=302D41"></a>
+    <a href="https://github.com/mateusantonioofc/api-restfull/releases/latest"><img src="https://img.shields.io/github/v/release/mateusantonioofc/api-restfull?style=for-the-badge&logo=gitbook&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"></a>
+    <a href="https://github.com/mateusantonioofc/api-restfull/stargazers"><img src="https://img.shields.io/github/stars/mateusantonioofc/api-restfull?style=for-the-badge&logo=apachespark&color=eed49f&logoColor=D9E0EE&labelColor=302D41"></a>
+    <br>
+</p>
+
 # Api RESTful in spring boot
 
 # Java version
